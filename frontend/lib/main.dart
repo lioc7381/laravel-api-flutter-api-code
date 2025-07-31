@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'screens/auth/login.dart';
+import 'screens/auth/register.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,15 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Welcome to Flutter',
-      home: Scaffold(
-        appBar: AppBar(title: Text('Welcome to Flutter')),
-        body: Center(
-          child: Text(
-            'Hello World',
-            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ),
+      home: Login(),
+      routes: {
+        '/login': (context) => Login(),
+        '/register': (context) => Register(),
+      },
     );
   }
 }
