@@ -52,15 +52,14 @@ class Register extends StatelessWidget {
                     ),
                     SizedBox(height: 20), // Acts as a spacer
                     ElevatedButton(
-                      onPressed: () {
-                        print('Login button pressed');
-                      },
+                      onPressed: () =>
+                          Navigator.pushNamed(context, '/categories'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.purple,
                         foregroundColor: Colors.white,
                         minimumSize: Size(double.infinity, 40),
                       ),
-                      child: Text('Login'),
+                      child: Text('Register'),
                     ),
                     Padding(
                       padding: EdgeInsets.only(
