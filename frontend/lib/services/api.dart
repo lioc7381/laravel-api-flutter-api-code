@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../../models/category.dart';
+import '../models/category.dart';
 
 class ApiService {
   ApiService();
@@ -23,18 +23,21 @@ class ApiService {
     return categories.map((category) => Category.fromJson(category)).toList();
   }
 
-  Future saveCategory(id, name) async {
-    String url = '$baseUrl/api/categories/$id';
+  Future saveCategory(Category category) async {
+    String url = '$baseUrl/api/categories/${category.id}';
     final http.Response response = await http.put(
       Uri.parse(url),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, String>{'name': name}),
+      body: jsonEncode(<String, String>{'name': category.name}),
     );
 
     if (response.statusCode != 200) {
       throw Exception('Failed to update category');
     }
+
+    final Map<String, dynamic> data = json.decode(response.body);
+    return Category.fromJson(data['data']);
   }
 }
