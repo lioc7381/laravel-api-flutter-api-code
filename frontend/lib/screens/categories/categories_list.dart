@@ -3,6 +3,7 @@ import '../../models/category.dart';
 import '../../widgets/category_edit.dart';
 import '../../providers/category_provider.dart';
 import 'package:provider/provider.dart';
+import '../../widgets/category_add.dart';
 
 class CategoriesList extends StatefulWidget {
   const CategoriesList({super.key});
@@ -84,6 +85,18 @@ class CategoriesListState extends State<CategoriesList> {
                 ),
               );
             },
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (context) {
+                  return CategoryAdd(provider.addCategory);
+                },
+              );
+            },
+            child: Icon(Icons.add),
           ),
         );
       },
